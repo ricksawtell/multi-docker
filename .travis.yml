@@ -23,5 +23,16 @@ after_success:
     - docker push ricksawtell/multi-nginx
     - docker push ricksawtell/multi-server
     - docker push ricksawtell/multi-worker
-    
+
+deploy:
+    provider: elasticbeanstalk
+    region: us-east-2
+    app: multi-docker
+    env: MultiDocker-env
+    bucket_name: elasticbeanstalk-us-east-2-834103524212
+    bucket_path: docker-multi
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
     
